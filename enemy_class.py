@@ -1,9 +1,16 @@
-import pygame
+import pygame, os, sys
 import random
 from css import *
-
+SCRIPT_PATH = sys.path[0]
 vec = pygame.math.Vector2
 
+ghostcolor = {}
+ghostcolor[0] = (255, 0, 0, 255)
+ghostcolor[1] = (255, 128, 255, 255)
+ghostcolor[2] = (128, 255, 255, 255)
+ghostcolor[3] = (255, 128, 0, 255)
+ghostcolor[4] = (50, 50, 255, 255) # blue, vulnerable ghost
+ghostcolor[5] = (255, 255, 255, 255) # white, flashing ghost
 
 class Enemy:
     def __init__(self, app, pos, number):
@@ -18,6 +25,21 @@ class Enemy:
         self.personality = self.set_personality()
         self.target = None
         self.speed = self.set_speed()
+        self.animFrame = 1
+        self.anim = {}
+
+        for i in range(1, 7, 1):
+            self.anim[i] = pygame.image.load(
+                os.path.join(SCRIPT_PATH, "assets/", "ghost " + str(i) + ".gif")).convert()
+
+        # change the ghost color in this frame
+            for y in range(0, 16, 1):
+                for x in range(0, 16, 1):
+                    if self.anim[i].get_at((x, y)) == (255, 0, 0, 255):
+                    #     # default, red ghost body color
+                        self.anim[i].set_at((x, y), self.colour)
+
+
 
     def update(self):
         self.target = self.set_target()
@@ -33,9 +55,13 @@ class Enemy:
                             self.app.cell_height//2)//self.app.cell_height+1
 
     def draw(self):
-        pygame.draw.circle(self.app.screen, self.colour,
-                           (int(self.pix_pos.x), int(self.pix_pos.y)), self.radius)
+        self.app.screen.blit(self.anim[self.animFrame],
+                    (int(self.pix_pos.x), int(self.pix_pos.y)))
+        self.animFrame += 1
 
+        if self.animFrame == 7:
+            # wrap to beginning
+            self.animFrame = 1
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
             speed = 2

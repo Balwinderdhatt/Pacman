@@ -24,7 +24,7 @@ class Player:
         self.anim_pacmanD = {}
         self.anim_pacmanS = {}
         self.anim_pacmanCurrent = self.anim_pacmanS
-        for i in range(1, 7, 1):
+        for i in range(1, 9, 1):
             self.anim_pacmanD[i] = pygame.image.load(os.path.join(SCRIPT_PATH, "assets/", "pacman-d " + str(i) + ".gif")).convert()
             self.anim_pacmanL[i] = pygame.image.load(
                 os.path.join(SCRIPT_PATH, "assets/", "pacman-l " + str(i) + ".gif")).convert()
