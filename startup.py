@@ -1,5 +1,6 @@
 import pygame, sys, os
 from css import *
+from configure import *
 SCRIPT_PATH = sys.path[0]
 
 
@@ -9,9 +10,10 @@ class Startup:
         self.option = "start"
         self.pac = pygame.image.load('assets/pacman-r 3.gif').convert()
         self.start_screen()
-        self.menu_select()
+
 
     def start_screen(self):
+        self.menu_select()
         self.app.screen.fill(BLACK)
         img = pygame.image.load('assets/pacman_logo.png')
         img = pygame.transform.scale(img, (500, 150))
@@ -28,8 +30,7 @@ class Startup:
         else:
             self.app.draw_text('QUIT', self.app.screen, [
                 WIDTH // 2, HEIGHT // 2 + 60], START_TEXT_SIZE, (44, 167, 198), START_FONT, centered=True)
-        self.app.draw_text('PUSH SPACE BAR', self.app.screen, [
-            WIDTH // 2, HEIGHT // 2 - 100], START_TEXT_SIZE, (170, 132, 58), START_FONT, centered=True)
+
         if self.option == 'configure':
             self.app.draw_text('CONFIGURE', self.app.screen, [
                 WIDTH // 2, HEIGHT // 2 + 30], START_TEXT_SIZE, (170, 132, 58), START_FONT, centered=True)
@@ -77,4 +78,4 @@ class Startup:
                     elif self.option == "quit":
                         self.app.running = False
                     else:
-                        pass
+                        self.app.state = 'settings'

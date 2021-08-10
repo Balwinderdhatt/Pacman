@@ -5,6 +5,7 @@ from css import *
 from startup import *
 from player_class import *
 from enemy_class import *
+from configure import *
 
 
 pygame.init()
@@ -25,6 +26,7 @@ class App:
         self.e_pos = []
         self.p_pos = None
         self.startUp = Startup(self)
+        self.settings = Settings(self)
         self.load()
         self.player = Player(self, vec(self.p_pos))
         self.make_enemies()
@@ -36,6 +38,8 @@ class App:
                 self.start_update()
                 self.startUp.start_screen()
                 self.startUp.menu_select()
+            elif self.state == 'settings':
+                self.settings.configure_screen()
             elif self.state == 'playing':
                 self.playing_events()
                 self.playing_update()
