@@ -63,8 +63,7 @@ class Player:
     def draw(self):
 
         self.app.screen.blit(self.anim_pacmanCurrent[self.animFrame],
-                    ((int(self.pix_pos.x),int(self.pix_pos.y))))
-
+                    (int(self.pix_pos.x),int(self.pix_pos.y)))
         self.animFrame += 1
 
         if self.animFrame == 7:

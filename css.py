@@ -22,6 +22,7 @@ ITEM = (44, 167, 198)
 # font settings
 START_TEXT_SIZE = 16
 START_FONT = 'arial black'
+START_CREDITS = 12
 
 # player settings
 # PLAYER_START_POS = vec(2, 2)
