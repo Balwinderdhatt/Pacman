@@ -35,6 +35,7 @@ class App:
                 self.start_events()
                 self.start_update()
                 self.startUp.start_screen()
+                self.startUp.menu_select()
             elif self.state == 'playing':
                 self.playing_events()
                 self.playing_update()
