@@ -25,7 +25,8 @@ class Player:
         self.anim_pacmanS = {}
         self.anim_pacmanCurrent = self.anim_pacmanS
         for i in range(1, 9, 1):
-            self.anim_pacmanD[i] = pygame.image.load(os.path.join(SCRIPT_PATH, "assets/", "pacman-d " + str(i) + ".gif")).convert()
+            self.anim_pacmanD[i] = pygame.image.load(
+                os.path.join(SCRIPT_PATH, "assets/", "pacman-d " + str(i) + ".gif")).convert()
             self.anim_pacmanL[i] = pygame.image.load(
                 os.path.join(SCRIPT_PATH, "assets/", "pacman-l " + str(i) + ".gif")).convert()
             self.anim_pacmanR[i] = pygame.image.load(
@@ -42,7 +43,7 @@ class Player:
                 self.anim_pacmanCurrent = self.anim_pacmanR
             elif direction == 'up':
                 self.anim_pacmanCurrent = self.anim_pacmanU
-            else:
+            elif direction == 'down':
                 self.anim_pacmanCurrent = self.anim_pacmanD
 
     def update(self):
